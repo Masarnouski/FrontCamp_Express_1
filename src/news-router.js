@@ -3,6 +3,7 @@ var express = require('express');
 const fs = require('fs');
 const util = require('util')
 var router = express.Router();
+var HttpError = require ('./Exceptions/HttpError')
 
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile)
@@ -53,7 +54,7 @@ router.put('/:id', function (req, res, next) {
         let news = JSON.parse(data);
         let index = news.articles.findIndex((article => article.id == req.params.id));
         if (index == -1)
-            throw new Error('Not found')
+            throw new HttpError('Not found', 404)
         news.articles[index] = req.body
         var stringData = JSON.stringify(news);
         return writeFileAsync(pathToJson, stringData)
@@ -71,7 +72,7 @@ router.delete('/:id', function (req, res, next) {
         let news = JSON.parse(data);
         let index = news.articles.findIndex(article => article.id == req.params.id);
         if (index == -1)
-            throw new Error('Not found')
+            throw new HttpError('Not found', 404)
         news.articles.splice(index, 1);
         var stringData = JSON.stringify(news);
         return writeFileAsync(pathToJson, stringData)
