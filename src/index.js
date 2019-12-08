@@ -9,6 +9,7 @@ var mongoConfig = require('./models');
 mongoConfig.connectDb().then(async () => {
   app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
+    console.log(process.env.JWT_KEY);
   });
 });
 
@@ -18,9 +19,13 @@ app.set('view engine', 'pug');
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var newsRouter = require('./news-router');
+var newsRouter = require('./routers/news-router');
+var userRouter = require('./routers/user-router');
 
 app.use('/news', newsRouter);
+app.use('/users', userRouter);
+
+
 
 app.use(errorHandler);
 

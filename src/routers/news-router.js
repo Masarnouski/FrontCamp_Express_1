@@ -3,11 +3,12 @@ var express = require('express');
 const fs = require('fs');
 const util = require('util')
 var router = express.Router();
-var HttpError = require('./Exceptions/HttpError')
-var mongoConfig = require('./models');
+var HttpError = require('../Exceptions/HttpError')
+var mongoConfig = require('../models');
+const auth = require('../middleware/auth')
 
-const readFileAsync = util.promisify(fs.readFile);
-const writeFileAsync = util.promisify(fs.writeFile)
+// const readFileAsync = util.promisify(fs.readFile);
+// const writeFileAsync = util.promisify(fs.writeFile)
 
 
 router.use(function timeLog(req, res, next) {
@@ -80,7 +81,7 @@ router.post('/', async function (req, res, next) {
 
 
 
-router.put('/:id', async function (req, res, next) {
+router.put('/:id', auth, async (req, res, next) => {
     try {
         let conditions = { id: req.params.id }
         var article = await mongoConfig.models.Article.findOneAndUpdate(conditions, req.body);
@@ -109,7 +110,7 @@ router.put('/:id', async function (req, res, next) {
 })
 
 
-router.delete('/:id', async function (req, res, next) {
+router.delete('/:id', auth, async(req, res, next) => {
     try {
         var article = await mongoConfig.models.Article.deleteOne({ id:req.params.id });
         console.log(article);
