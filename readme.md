@@ -19,7 +19,8 @@ localhost:3000/users/me/logoutall(need to have bearer token in headers)
 GET:
 localhost:3000/users/me - to get user info(need to have bearer token in headers)
 
-To use applicatin, please, use localhost:3000/users to login
+To use application, please, use localhost:3000/users to create new user
+![postUser image](https://github.com/Masarnouski/FrontCamp_Express_1/blob/master/postUser.png)
 
-
-
+You can get JWT Token from responce, and then do a request to delete article
+![deleteUser image](https://github.com/Masarnouski/FrontCamp_Express_1/blob/master/deleteUser.png)
