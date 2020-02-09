@@ -25,15 +25,6 @@ router.get('/', async function (req, res, next) {
         res.status(200).send(articles);
     }
     catch (error) { next(error) }
-    //    function (err, kittens) {
-    //         if (err) return console.error(err);
-    //         console.log(kittens);
-    //       })
-    // readFileAsync(pathToJson).then((data) => {
-    //     let news = JSON.parse(data);
-    //     res.send(news);
-    // })
-    // .catch(next);
 });
 
 
@@ -48,12 +39,6 @@ router.get('/:id', async function (req, res, next) {
         res.status(200).send(article);
     }
     catch (error) { next(error) }
-    // readFileAsync(pathToJson).then((data) => {
-    //     let news = JSON.parse(data);
-    //     let article = news.articles.filter((article => article.id == req.params.id));
-    //     res.send(article);
-    //     })
-    //     .catch(next);
 });
 
 router.post('/', async function (req, res, next) {
@@ -66,17 +51,6 @@ router.post('/', async function (req, res, next) {
     catch (error) {
         next(error)
     }
-    // readFileAsync(pathToJson).then((data) => {
-    //     let dataObject = JSON.parse(data);
-    //     dataObject.articles.push(req.body)
-    //     var stringData = JSON.stringify(dataObject);
-    //     return writeFileAsync(pathToJson, stringData)
-    //     })
-    //     .then(() => {
-    //         console.log('object added')
-    //         res.status(200).send('Added')
-    //     })
-    //     .catch(next);
 });
 
 
@@ -93,20 +67,6 @@ router.put('/:id', auth, async (req, res, next) => {
     catch (error) {
         next(error)
     }
-    // readFileAsync(pathToJson).then((data) => {
-    //     let news = JSON.parse(data);
-    //     let index = news.articles.findIndex((article => article.id == req.params.id));
-    //     if (index == -1)
-    //         throw new HttpError('Not found', 404)
-    //     news.articles[index] = req.body
-    //     var stringData = JSON.stringify(news);
-    //     return writeFileAsync(pathToJson, stringData)
-    // })
-    //     .then(() => {
-    //         console.log('object updated')
-    //         res.status(200).send('Changed');
-    //     })
-    //     .catch(next);
 })
 
 
@@ -122,21 +82,6 @@ router.delete('/:id', auth, async(req, res, next) => {
     catch (error) {
         next(error)
     }
-
-    // readFileAsync(pathToJson).then((data) => {
-    //     let news = JSON.parse(data);
-    //     let index = news.articles.findIndex(article => article.id == req.params.id);
-    //     if (index == -1)
-    //         throw new HttpError('Not found', 404)
-    //     news.articles.splice(index, 1);
-    //     var stringData = JSON.stringify(news);
-    //     return writeFileAsync(pathToJson, stringData)
-    // })
-    //     .then(() => {
-    //         console.log('object updated')
-    //         res.status(200).send('Deleted');
-    //     })
-    //     .catch(next);
 })
 
 

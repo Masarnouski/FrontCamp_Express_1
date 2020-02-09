@@ -2,10 +2,12 @@ var mongoose = require('mongoose');
 var autoIncrement = require('mongoose-auto-increment');
 
 const articleSchema = new mongoose.Schema({
-    author: String,
+    id: Number,
+    urlToImage: String,
     title: String,
-    url: String,
-    id:Number
+    description: String,
+    publishedAt: Date,
+    createdByMe: Boolean
 });
 console.log(mongoose.connection)
 autoIncrement.initialize(mongoose.connection);

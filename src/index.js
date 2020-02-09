@@ -1,5 +1,6 @@
 const express = require('express');
 var app = express();
+var cors = require('cors')
 const fs = require('fs');
 const util = require('util')
 var bodyParser = require('body-parser')
@@ -13,6 +14,7 @@ mongoConfig.connectDb().then(async () => {
   });
 });
 
+app.use(cors())
 app.set('views', './src/views')
 app.set('view engine', 'pug');
 
